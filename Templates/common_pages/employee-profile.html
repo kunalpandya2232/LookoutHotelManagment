@@ -1,0 +1,242 @@
+<div class="container">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.1s">
+            <a class="service-item rounded" href="">
+
+                <div class="p-2 h4 text-uppercase">
+                    <span>Role :</span>
+                    <span class="font-weight-normal">{{employee.user.groups.first}}</span>
+                </div>
+                <div class="p-2 h4">
+                    <span>Email :</span>
+                    <span class="font-weight-normal">{{employee.user.email}}</span>
+                </div>
+                <div class="p-2 h4">
+                    <span>Salary:</span>
+                    <span class="font-weight-normal">{{employee.salary}}</span>
+                </div>
+                <div class="p-2 h4">
+                    <span>Creation Date:</span>
+                    <span class="font-weight-normal">{{employee.user.date_joined}}</span>
+                </div>
+            
+            </a>
+        </div>
+
+        <div class="row g-0">
+                
+
+
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                        <h6 class="section-title text-center text-primary text-uppercase">Employee Profile</h6>
+                        <h1 class="mb-5">Edit <span class="text-primary text-uppercase">Profile</span></h1>
+                    </div>
+                    <div class="row g-5">
+                        <div class="col-lg-6">
+                            <div class="row g-3">
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="/static/images/about-1.jpg%20" style="margin-top: 25%; visibility: visible; animation-delay: 0.1s; animation-name: zoomIn;">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="/static/images/about-2.jpg%20" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomIn;">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="/static/images/about-3.jpg%20" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="/static/images/about-4.jpg%20" style="visibility: visible; animation-delay: 0.7s; animation-name: zoomIn;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="YDHYWNl5jNuaAszNI4ovHHratKiweAs77AEzyFVMYjfKZIEcYyHwdmzUa9PO9RpG">
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <div class="form-floating">
+                                                
+                                                {% if employee.user.id != request.user.id %}
+                                                <span class="font-weight-normal">{{employee.user.first_name}} </span>
+                                                {% else %}
+                                                <input type="text" class="form-control "  id="id_first_name" value="{{employee.user.first_name}}" name="first_name">
+                                                <label for="name">Name</label>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-floating">
+                                                
+                                            
+                                                {% if employee.user.id != request.user.id %}
+                                                <span class="font-weight-normal"> {{employee.user.last_name}}</span>
+                                                {% else %}
+                                                <input type="text" class="form-control border border-secondary" id="id_last_name"
+                                                    value="{{employee.user.last_name}}" name="last_name">
+                                                {% endif %}
+                                                
+                                                <label for="email">Surname:</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-floating">
+                                                
+                                            
+                                                {% if employee.user.id != request.user.id %}
+
+                                                <span class="font-weight-normal">{{employee.phoneNumber}}</span>
+                                                {% else %}
+                                                <input type="text" class="form-control border border-secondary" id="id_phoneNumber"
+                                                    value="{{employee.phoneNumber}}" name="phoneNumber">
+                                                {% endif %}
+                                                
+                                                <label for="email">Phone Number:</label>
+                                            </div>
+                                        </div>
+
+                                        
+                                    
+                                        <div class="col-12">
+                                            {% if employee.user.id == request.user.id %}
+                                            <input class="btn login_btn btn-primary w-100 py-3" type="submit" name="submit" value="Save Changes">
+                                            {% endif %}
+                                            
+                                        </div>
+
+                                    </div>
+                            
+                             
+
+                                
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <!-- <div class="row mt-5 clearfix">
+            <div class="col-6">
+
+                
+
+                <div class="p-2 h4">
+                    <span>Name:</span>
+                    {% if employee.user.id != request.user.id %}
+                    <span class="font-weight-normal">{{employee.user.first_name}} </span>
+                    {% else %}
+                    <input type="text" class="form-control border border-secondary" id="id_first_name"
+                        value="{{employee.user.first_name}}" name="first_name">
+                    {% endif %}
+                </div>
+
+                <div class="p-2 h4">
+                    <span>Surname:</span>
+                    {% if employee.user.id != request.user.id %}
+                    <span class="font-weight-normal"> {{employee.user.last_name}}</span>
+                    {% else %}
+                    <input type="text" class="form-control border border-secondary" id="id_last_name"
+                        value="{{employee.user.last_name}}" name="last_name">
+                    {% endif %}
+                </div>
+
+
+
+                <br>
+
+                <div class="p-2 h4">
+                    <span>Email :</span>
+                    <span class="font-weight-normal">{{employee.user.email}}</span>
+                </div>
+
+                <br>
+
+                <div class="p-2 h4">
+                    <span>Creation Date:</span>
+                    <span class="font-weight-normal">{{employee.user.date_joined}}</span>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+
+                <div class="p-2 h4">
+                    <span>Phone Number: </span>
+                    {% if employee.user.id != request.user.id %}
+
+                    <span class="font-weight-normal">{{employee.phoneNumber}}</span>
+                    {% else %}
+                    <input type="text" class="form-control border border-secondary" id="id_phoneNumber"
+                        value="{{employee.phoneNumber}}" name="phoneNumber">
+                    {% endif %}
+                </div>
+
+                <br>
+
+                <div class="p-2 h4">
+                    <span>Role :</span>
+                    <span class="font-weight-normal">{{employee.user.groups.first}}</span>
+                </div>
+
+                <br>
+
+                <div class="p-2 h4">
+                    <span>Salary:</span>
+                    <span class="font-weight-normal">{{employee.salary}}</span>
+                </div>
+
+            </div>
+        </div>
+        {% if employee.user.id == request.user.id %}
+        <button type="submit" name="submit" class="btn btn-success float-right">Save Changes</button>
+        {% endif %} -->
+        <br>
+    </form>
+    <br>
+
+    {% if role == 'staff' or request.user != employee.user %}
+    <div class="table-responsive my-5">
+        <div class="table-header row">
+
+            <div class="col-sm-12 col-md-12 col-lg-4 mb-4">
+                <h2>Task List</h2>
+            </div>
+
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for tasks in tasks %}
+                <tr>
+                    <td>{{tasks.id}}</td>
+                    <td>{{tasks.startTime}}</td>
+                    <td>{{tasks.endTime}}</td>
+                    <td>{{tasks.description}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+    {% endif %}
+
+</div>
